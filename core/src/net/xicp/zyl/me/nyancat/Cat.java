@@ -23,6 +23,7 @@ public class Cat extends AbstractObject{
 	boolean hasRocket;
 	boolean playFootAnimation;
 	boolean isDead;
+	boolean canThroughThings;
 	
 	public Cat() {
 		// TODO Auto-generated constructor stub

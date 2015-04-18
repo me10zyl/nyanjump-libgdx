@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:d29fdaaa224108303450ef6ff7be06dd$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="skin_cathero_2x.png" width="1024" height="1024">
+    <sprite n="cat_01" x="270" y="410" w="128" h="80" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_02" x="682" y="340" w="132" h="80" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_03" x="546" y="326" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_04" x="410" y="326" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_05" x="274" y="326" w="132" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_06" x="2" y="416" w="128" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_07" x="270" y="410" w="128" h="80" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_08" x="682" y="340" w="132" h="80" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_09" x="546" y="326" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_10" x="410" y="326" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_11" x="274" y="326" w="132" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_12" x="2" y="416" w="128" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_01" x="842" y="216" w="132" h="84" oX="0" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_cococat_02" x="706" y="168" w="132" h="84" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_cococat_03" x="2" y="332" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_04" x="162" y="154" w="136" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_05" x="138" y="326" w="132" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_06" x="138" y="410" w="128" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_07" x="438" y="154" w="132" h="84" oX="0" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_cococat_08" x="706" y="168" w="132" h="84" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_cococat_09" x="2" y="332" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_10" x="162" y="154" w="136" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_11" x="138" y="326" w="132" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_cococat_12" x="818" y="388" w="128" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_fall_01" x="402" y="410" w="126" h="96" oX="0" oY="4" oW="128" oH="102"/>
+    <sprite n="cat_fall_02" x="900" y="574" w="118" h="98" oX="8" oY="4" oW="128" oH="102"/>
+    <sprite n="cat_fall_03" x="2" y="500" w="116" h="96" oX="12" oY="2" oW="128" oH="102"/>
+    <sprite n="cat_fall_04" x="134" y="494" w="118" h="92" oX="8" oY="0" oW="128" oH="102"/>
+    <sprite n="cat_fallred_01" x="918" y="2" w="98" h="126" oX="0" oY="2" oW="128" oH="102" r="y"/>
+    <sprite n="cat_fallred_02" x="778" y="556" w="118" h="98" oX="8" oY="4" oW="128" oH="102"/>
+    <sprite n="cat_fallred_03" x="908" y="472" w="114" h="98" oX="12" oY="4" oW="128" oH="102"/>
+    <sprite n="cat_fallred_04" x="656" y="510" w="118" h="98" oX="8" oY="4" oW="128" oH="102"/>
+    <sprite n="cat_rainbow" x="642" y="78" w="60" h="28" r="y"/>
+    <sprite n="cat_rainbow_nw" x="642" y="78" w="60" h="28" r="y"/>
+    <sprite n="cat_rocketeer_01" x="488" y="2" w="216" h="72" oX="24" oY="6" oW="242" oH="80"/>
+    <sprite n="cat_rocketeer_02" x="2" y="2" w="242" h="72" oX="0" oY="4" oW="242" oH="80"/>
+    <sprite n="cat_rocketeer_03" x="708" y="2" w="206" h="78" oX="32" oY="0" oW="242" oH="80"/>
+    <sprite n="cat_rocketeer_04" x="248" y="2" w="236" h="72" oX="0" oY="4" oW="242" oH="80"/>
+    <sprite n="cat_scat_01" x="2" y="78" w="156" h="74" oX="0" oY="0" oW="156" oH="76"/>
+    <sprite n="cat_scat_02" x="482" y="78" w="156" h="72" oX="0" oY="2" oW="156" oH="76"/>
+    <sprite n="cat_scat_03" x="322" y="78" w="156" h="72" oX="0" oY="4" oW="156" oH="76"/>
+    <sprite n="cat_scat_04" x="162" y="78" w="156" h="72" oX="0" oY="2" oW="156" oH="76"/>
+    <sprite n="cat_slide_01" x="658" y="424" w="122" h="82"/>
+    <sprite n="cat_slide_02" x="784" y="472" w="120" h="80" oX="0" oY="2" oW="122" oH="82"/>
+    <sprite n="cat_slide_03" x="532" y="496" w="120" h="80" oX="0" oY="2" oW="122" oH="82"/>
+    <sprite n="cat_slide_04" x="532" y="410" w="122" h="82"/>
+    <sprite n="cat_weedcat_01" x="2" y="244" w="132" h="84" oX="0" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_02" x="138" y="238" w="132" h="84" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_03" x="410" y="242" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_04" x="846" y="132" w="136" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_05" x="274" y="242" w="132" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_06" x="574" y="240" w="128" h="82" oX="4" oY="2" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_07" x="302" y="154" w="132" h="84" oX="0" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_08" x="2" y="156" w="132" h="84" oX="4" oY="0" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_09" x="842" y="304" w="132" h="80" oX="4" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_10" x="706" y="84" w="136" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_11" x="706" y="256" w="132" h="80" oX="0" oY="4" oW="136" oH="84"/>
+    <sprite n="cat_weedcat_12" x="574" y="154" w="128" h="82" oX="4" oY="2" oW="136" oH="84"/>
+</TextureAtlas>

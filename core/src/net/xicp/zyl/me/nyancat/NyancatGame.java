@@ -19,6 +19,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 
 public class NyancatGame extends Game {
 	SpriteBatch batch;
@@ -44,21 +45,29 @@ public class NyancatGame extends Game {
 	Preferences p;
 	private int highestScore;
 	private List<Platform> platformToRemove = new ArrayList<Platform>();
-	private float maxY,minY;
+	private float maxY, minY;
 	Music music;
 	Sound hitSpring;
 	Sound rocket;
 	Sound dead;
+	Sound hitPlatform;
+	Sound canThroughSound;
+	Sound enemyDie;
 	Texture ready;
+	Enemy enemy_partycat;
 	@Override
 	public void create() {
 		scr_width = 600;
 		scr_height = 1066;
+		enemy_partycat = new Enemy(Enemy.TYPE.partycat);
 		ready = new Texture("images/ready.png");
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/music.ogg"));
+		hitPlatform = Gdx.audio.newSound(Gdx.files.internal("sound/killed.ogg"));
 		hitSpring = Gdx.audio.newSound(Gdx.files.internal("sound/bounce.ogg"));
 		rocket = Gdx.audio.newSound(Gdx.files.internal("sound/turbonyan.ogg"));
-		dead = Gdx.audio.newSound(Gdx.files.internal("sound/damage.ogg"));
+		dead = Gdx.audio.newSound(Gdx.files.internal("sound/nw_fever_off.ogg"));
+		canThroughSound = Gdx.audio.newSound(Gdx.files.internal("sound/damage.ogg"));
+		enemyDie = Gdx.audio.newSound(Gdx.files.internal("sound/nyan_shop.ogg"));
 		batch = new SpriteBatch();
 		cat = new Cat();
 		font = new BitmapFont(Gdx.files.internal("images/arial.fnt"));
@@ -100,6 +109,7 @@ public class NyancatGame extends Game {
 
 	private void resetWorld() {
 		// TODO Auto-generated method stub
+		cat.canThroughThings = false;
 		cat.isDead = false;
 		maxY = 0;
 		minY = 0;
@@ -109,8 +119,11 @@ public class NyancatGame extends Game {
 		cat.position.set(0, 0);
 		platforms.clear();
 		generatePlatformFirst();
-		camera.position.set(scr_width / 2, cat.position.y + scr_height / 2 - 100, 0);
-		music.play();
+		camera.position.set(scr_width / 2, cat.position.y + scr_height / 2
+				- 100, 0);
+		if (gameState == GameState.Start)
+			music.play();
+		generateEnemy();
 	}
 
 	private void generatePlatformFirst() {
@@ -138,43 +151,41 @@ public class NyancatGame extends Game {
 		// TODO Auto-generated method stub
 		platform.init();
 		float height = maxY + MathUtils.random(100, Platform.GAP_Y);
-		if(score >= MathUtils.random(10000))
-		{
+		if (score >= MathUtils.random(10000)) {
 			final float chance = score / 10000.0f;
 			boolean boolean_chance = MathUtils.randomBoolean(chance);
-			if(boolean_chance)
-			{
-				if(MathUtils.randomBoolean(0.6f))
-				{
+			if (boolean_chance) {
+				if (MathUtils.randomBoolean(0.6f)) {
 					platform.setLevel(Platform.Level.DYNAMIC_X);
-				}else
-				{
+				} else {
 					platform.setLevel(Platform.Level.DYNAMIC_X_CIRCLE);
 				}
-				
-				if(MathUtils.randomBoolean(0.3f))
-				{
+
+				if (MathUtils.randomBoolean(0.3f)) {
 					platform.setLevel(Platform.Level.BROKEN);
 				}
-				if(MathUtils.randomBoolean(0.1f))
-				{
+				if (MathUtils.randomBoolean(0.1f)) {
 					platform.setLevel(Platform.Level.NORMAL);
 				}
 			}
 		}
-		
+
 		platform.position.x = MathUtils.random(scr_width - platform.getWidth());
 		platform.position.y = height;
 		this.maxY = height;
 	}
 
+	private void generateEnemy() {
+		enemy_partycat = new Enemy(Enemy.TYPE.partycat);
+		enemy_partycat.position.set(0, MathUtils.random(cat.position.y + scr_height,  1.5f * maxY));
+	}
+
 	private void updateWorld() {
 		// TODO Auto-generated method stub
-		if(gameState == GameState.Ready)
-		{
-			if(Gdx.input.justTouched())
-			{
+		if (gameState == GameState.Ready) {
+			if (Gdx.input.justTouched()) {
 				gameState = GameState.Start;
+				music.play();
 			}
 		}
 		float deltaTime = Gdx.graphics.getDeltaTime();
@@ -182,54 +193,51 @@ public class NyancatGame extends Game {
 			cat.scarfStateTime += deltaTime;
 		if (cat.playFootAnimation == true) {
 			cat.footStateTime += cat.anim_foot.getFrameDuration();
-			if(cat.footStateTime > cat.anim_foot.getAnimationDuration() * 3)
-			{
+			if (cat.footStateTime > cat.anim_foot.getAnimationDuration() * 3) {
 				cat.playFootAnimation = false;
 			}
 		} else {
 			cat.footStateTime = 0;
 		}
-		if(cat.hasRocket)
-		{
+		if (cat.hasRocket) {
 			cat.rocketSateTime += deltaTime;
-		}else
-		{
+		} else {
 			cat.rocketSateTime = 0;
 		}
-		if(cat.rocket.isBroken && gameState != GameState.Gameover)
-		{
+		if (cat.rocket.isBroken && gameState == GameState.Start && !cat.canThroughThings) {
 			rocket.stop();
 			music.play();
 		}
-		if(gameState == GameState.Start)
-		{
+		if (gameState == GameState.Start) {
 			cat.velocity.add(gravity);
 			cat.position.mulAdd(cat.velocity, deltaTime);
 			cat.rocket.update(gravity, deltaTime);
+			enemy_partycat.update(gravity,deltaTime);
 		}
-		
 		if (cat.position.y > old_score)
 			score = (int) cat.position.y;
 		if (cat.velocity.y >= 0
 				&& cat.position.y + scr_height / 2 - 500 > camera.position.y) {
 			camera.position.y = cat.position.y + scr_height / 2 - 500;
 		}
-		float accleration = 0;
-		if (Gdx.app.getType() == ApplicationType.Android
-				|| Gdx.app.getType() == ApplicationType.iOS) {
-			accleration = -(Gdx.input.getAccelerometerX() * 180f);
-		} else {
-			if (Gdx.input.isKeyPressed(Keys.DPAD_LEFT)) {
-				accleration = -300f;
+		if (!cat.isDead && !cat.canThroughThings) {
+			float accleration = 0;
+			if (Gdx.app.getType() == ApplicationType.Android
+					|| Gdx.app.getType() == ApplicationType.iOS) {
+				accleration = -(Gdx.input.getAccelerometerX() * 180f);
+			} else {
+				if (Gdx.input.isKeyPressed(Keys.DPAD_LEFT)) {
+					accleration = -300f;
+				}
+				if (Gdx.input.isKeyPressed(Keys.DPAD_RIGHT)) {
+					accleration = 300f;
+				}
+				if (Gdx.input.isKeyPressed(Keys.DPAD_UP)) {
+					cat.jump();
+				}
 			}
-			if (Gdx.input.isKeyPressed(Keys.DPAD_RIGHT)) {
-				accleration = 300f;
-			}
-			if (Gdx.input.isKeyPressed(Keys.DPAD_UP)) {
-				cat.jump();
-			}
+			cat.velocity.x = accleration;
 		}
-		cat.velocity.x = accleration;
 		platformToRemove.clear();
 		for (Platform plat : platforms) {
 			if (plat.position.y < camera.position.y - scr_height / 2
@@ -239,79 +247,105 @@ public class NyancatGame extends Game {
 				generatePlatform(plat);
 				continue;
 			}
-			
-			if(plat.getLevel() == Platform.Level.DYNAMIC_X)
-			{
-					plat.moveX();
-			}else if(plat.getLevel() == Platform.Level.DYNAMIC_X_CIRCLE)
-			{
-					plat.moveXCircle();
+
+			if (plat.getLevel() == Platform.Level.DYNAMIC_X) {
+				plat.moveX();
+			} else if (plat.getLevel() == Platform.Level.DYNAMIC_X_CIRCLE) {
+				plat.moveXCircle();
 			}
-			Rectangle rect1 = new Rectangle();
-			Rectangle rect2 = new Rectangle();
-			rect1.setPosition(cat.position);
-			rect1.setSize(cat.getWidth(), 1);
-			rect2.setPosition(plat.position);
-			rect2.setSize(plat.getWidth(), plat.getHeight());
-			if (rect1.overlaps(rect2)) {
-				if (cat.velocity.y < 0)
+			if (gameState == GameState.Start) {
+				Rectangle rect1 = new Rectangle();
+				Rectangle rect2 = new Rectangle();
+				rect1.setPosition(cat.position);
+				rect1.setSize(cat.getWidth(), 1);
+				rect2.setPosition(plat.position);
+				rect2.setSize(plat.getWidth(), plat.getHeight());
+				if (rect1.overlaps(rect2)) {// crash platform
+					if (cat.velocity.y < 0 && !cat.isDead && !cat.canThroughThings) {
+						cat.jump();
+						hitPlatform.play();
+						if (plat.getLevel() == Platform.Level.BROKEN) {
+							plat.setRemoved(true);
+							generatePlatform(plat);
+							continue;
+						}
+					}
+				}
+				Rectangle rect_foot = new Rectangle(rect1);
+				Rectangle rect_body = new Rectangle(rect1);
+				Rectangle rect_monster = new Rectangle();
+				rect_monster.setPosition(enemy_partycat.position);
+				rect_monster.setSize(enemy_partycat.getWidth(),
+						enemy_partycat.getHeight());
+				rect_body.setPosition(cat.position.x, cat.position.y + 1);
+				rect_body.setSize(cat.getWidth(), cat.getHeight() - 1);// crash monster
+				if(rect_foot.overlaps(rect_monster) && !cat.canThroughThings && !cat.isDead && !cat.hasRocket)
 				{
-					cat.jump();
-					if(plat.getLevel() == Platform.Level.BROKEN)
-					{
-						plat.setRemoved(true);
-						generatePlatform(plat);
-						continue;
-					}
+					enemy_partycat.isDie = true;
+					cat.velocity.y = 2000;
+					enemyDie.play(0.05f);
 				}
-			}
-			plat.position.add(plat.velocity);
-			if(plat.hasSpring)
-			{
-				rect2.setPosition(plat.getSpring().position);
-				rect2.setSize(plat.getSpring().getWidth(), plat.getSpring().getHeight());
-				if (rect1.overlaps(rect2)) {
-					if (cat.velocity.y <= 0)
-					{
-						hitSpring.play();
-						cat.hitSpring();
-					}
+				else if (rect_body.overlaps(rect_monster) && !cat.canThroughThings && !cat.isDead && !cat.hasRocket) {
+					music.stop();
+					canThroughSound.play();
+					cat.canThroughThings = true;
+					cat.velocity.y = 600;
+					cat.velocity.x = MathUtils.random(-100, 100);
 				}
-			}else if(plat.hasRocket)
-			{
-				rect2.setPosition(plat.getRocket().position);
-				rect2.setSize(plat.getRocket().getWidth(), plat.getRocket().getHeight());
-				if (rect1.overlaps(rect2)) {
-					if (cat.velocity.y < 0)
-					{
-						cat.rocket.isBroken = false;
-						music.pause();
-						rocket.play();
-						plat.hasRocket = false;
-						cat.hitRocket();
+				plat.position.add(plat.velocity);
+				if (plat.hasSpring) {
+					rect2.setPosition(plat.getSpring().position);
+					rect2.setSize(plat.getSpring().getWidth(), plat.getSpring()
+							.getHeight() + 3);
+					if (rect1.overlaps(rect2)) {
+						if (cat.velocity.y <= 0 && !cat.isDead && !cat.canThroughThings) {
+							hitSpring.play();
+							cat.hitSpring();
+						}
+					}
+				} else if (plat.hasRocket) {
+					rect2.setPosition(plat.getRocket().position);
+					rect2.setSize(plat.getRocket().getWidth(), plat.getRocket()
+							.getHeight());
+					if (rect1.overlaps(rect2)) {
+						if (cat.velocity.y < 0 && !cat.isDead && !cat.canThroughThings) {
+							cat.rocket.isBroken = false;
+							music.pause();
+							rocket.play();
+							plat.hasRocket = false;
+							cat.hitRocket();
+						}
 					}
 				}
 			}
 		}
 		if (cat.position.y < minY - 1000 && !cat.isDead) {
-			cat.isDead = true;
-			highestScore = p.getInteger("score", 0);
-			if (score > highestScore) {
-				hasNewScore = true;
-				p.putInteger("score", score);
-				p.flush();
-				highestScore = score;
-			}
-			gameState = GameState.Gameover;
-			music.stop();
-			dead.play();
+			gameOver();
 		}
-		if (Gdx.input.justTouched() && cat.isDead && gameState == GameState.Gameover) {
+		if(enemy_partycat.position.y < minY)
+		{
+			generateEnemy();
+		}
+		if (Gdx.input.justTouched() && gameState == GameState.Gameover) {
 			gameState = GameState.Start;
 			resetWorld();
 		}
 		old_score = score;
 		old_cat_postion_y = cat.position.y;
+	}
+
+	private void gameOver() {
+		cat.isDead = true;
+		highestScore = p.getInteger("score", 0);
+		if (score > highestScore) {
+			hasNewScore = true;
+			p.putInteger("score", score);
+			p.flush();
+			highestScore = score;
+		}
+		gameState = GameState.Gameover;
+		music.stop();
+		dead.play();
 	}
 
 	private void drawWorld() {
@@ -322,19 +356,21 @@ public class NyancatGame extends Game {
 		batch.draw(backgroundTile, 0, 0);
 		for (Platform plat : platforms) {
 			plat.draw(batch);
-//			font.draw(batch,platforms.indexOf(plat)  + ":"+plat.position.y + "", plat.position.x, plat.position.y);
+			// font.draw(batch,platforms.indexOf(plat) + ":"+plat.position.y +
+			// "", plat.position.x, plat.position.y);
 		}
+		enemy_partycat.draw(batch);
 		cat.draw(batch);
-		if(cat.rocket.isBroken)
+		if (cat.rocket.isBroken)
 			cat.rocket.draw(batch);
 		batch.end();
 
 		uiCamera.update();
 		batch.setProjectionMatrix(uiCamera.combined);
 		batch.begin();
-		if(gameState == GameState.Ready)
-		{
-			batch.draw(ready,scr_width / 2 - ready.getWidth() / 2, scr_height/2 - ready.getHeight()/2);
+		if (gameState == GameState.Ready) {
+			batch.draw(ready, scr_width / 2 - ready.getWidth() / 2, scr_height
+					/ 2 - ready.getHeight() / 2);
 		}
 		if (gameState == GameState.Gameover) {
 			batch.draw(gameOver, scr_width / 2 - gameOver.getWidth() / 2,

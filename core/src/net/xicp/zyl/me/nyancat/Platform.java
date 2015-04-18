@@ -180,21 +180,21 @@ public class Platform extends AbstractObject{
 	}
 
 	public void init() {
-		position.set(0, 0);
-		velocity.set(0, 0);
 		isRemoved = false;
 		hasRocket = false;
 		hasSpring = false;
-		if(MathUtils.randomBoolean(0.15f))
+		if(MathUtils.randomBoolean(0.15f) && position.y >= 300)
 		{
 			hasSpring = true;
 			hasRocket = false;
 		}
-		if(MathUtils.randomBoolean(0.07f))
+		if(MathUtils.randomBoolean(0.07f) && position.y >= 300)
 		{
 			hasRocket = true;
 			hasSpring = false;
 		}
+		position.set(0, 0);
+		velocity.set(0, 0);
 	}
 	
 	public Platform(TYPE type) {
