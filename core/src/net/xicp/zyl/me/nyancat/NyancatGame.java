@@ -53,6 +53,7 @@ public class NyancatGame extends Game {
 	Sound hitPlatform;
 	Sound canThroughSound;
 	Sound enemyDie;
+	Sound supercatSound;
 	Texture ready;
 	Enemy enemy_partycat;
 	float ranBg1;
@@ -69,6 +70,7 @@ public class NyancatGame extends Game {
 		rocket = Gdx.audio.newSound(Gdx.files.internal("sound/turbonyan.ogg"));
 		dead = Gdx.audio.newSound(Gdx.files.internal("sound/nw_fever_off.ogg"));
 		canThroughSound = Gdx.audio.newSound(Gdx.files.internal("sound/damage.ogg"));
+		supercatSound = Gdx.audio.newSound(Gdx.files.internal("sound/weedcat.ogg"));
 		enemyDie = Gdx.audio.newSound(Gdx.files.internal("sound/nyan_shop.ogg"));
 		batch = new SpriteBatch();
 		cat = new Cat();
@@ -217,6 +219,11 @@ public class NyancatGame extends Game {
 			rocket.stop();
 			music.play();
 		}
+		if(!cat.hasSupercat && gameState == GameState.Start && !cat.canThroughThings)
+		{
+			supercatSound.stop();
+			music.play();
+		}
 		if (gameState == GameState.Start) {
 			cat.velocity.add(gravity);
 			cat.position.mulAdd(cat.velocity, deltaTime);
@@ -331,7 +338,10 @@ public class NyancatGame extends Game {
 							.getHeight());
 					if (rect1.overlaps(rect2)) {
 						if (cat.velocity.y <= 0 && !cat.isDead && !cat.canThroughThings) {
+							music.pause();
+							supercatSound.play(1f);
 							cat.hitSupercat();
+							plat.hasSupercat = false;
 						}
 					}
 				}
