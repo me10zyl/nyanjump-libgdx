@@ -12,6 +12,7 @@ public class Platform extends AbstractObject{
 	private boolean directionX;
 	private Spring spring;
 	private SmallRocket rocket;
+	private Supercat supercat;
 	private boolean isRemoved;
 	public boolean isRemoved() {
 		return isRemoved;
@@ -29,8 +30,17 @@ public class Platform extends AbstractObject{
 		this.rocket = rocket;
 	}
 
+	public Supercat getSupercat() {
+		return supercat;
+	}
+
+	public void setSupercat(Supercat supercat) {
+		this.supercat = supercat;
+	}
+
 	boolean hasSpring;
 	boolean hasRocket;
+	boolean hasSupercat;
 	
 	public Spring getSpring() {
 		return spring;
@@ -176,25 +186,37 @@ public class Platform extends AbstractObject{
 		texture = catAtlas.createSprite(type);
 		spring = new Spring();
 		rocket = new SmallRocket();
+		supercat = new Supercat();
 		init();
 	}
 
 	public void init() {
-		isRemoved = false;
-		hasRocket = false;
-		hasSpring = false;
+		setAllFalse();
 		if(MathUtils.randomBoolean(0.15f) && position.y >= 300)
 		{
+			setAllFalse();
 			hasSpring = true;
-			hasRocket = false;
 		}
-		if(MathUtils.randomBoolean(0.07f) && position.y >= 300)
+		if(MathUtils.randomBoolean(0.03f) && position.y >= 300)
 		{
+			setAllFalse();
 			hasRocket = true;
-			hasSpring = false;
+		}
+		if(MathUtils.randomBoolean(0.07f)  && position.y >= 300)
+		{
+			setAllFalse();
+			hasSupercat = true;
 		}
 		position.set(0, 0);
 		velocity.set(0, 0);
+	}
+	
+	private void setAllFalse()
+	{
+		isRemoved = false;
+		hasRocket = false;
+		hasSpring = false;
+		hasSupercat = false;
 	}
 	
 	public Platform(TYPE type) {
@@ -216,6 +238,12 @@ public class Platform extends AbstractObject{
 			rocket.position.x = this.position.x + getWidth() / 2 - rocket.getWidth() / 2;
 			rocket.position.y = this.position.y + getHeight() - rocket.getHeight() / 2 + 6;
 			rocket.draw(batch);
+		}
+		if(hasSupercat)
+		{
+			supercat.position.x = this.position.x + getWidth() / 2 - supercat.getWidth() / 2;
+			supercat.position.y = this.position.y + getHeight() - supercat.getHeight() / 2 + 6;
+			batch.draw(supercat.getSupercat(), supercat.position.x, supercat.position.y, supercat.getWidth() / 2,  supercat.getHeight()/2, supercat.getWidth(), supercat.getHeight(), 1, 1, 90);
 		}
 		batch.draw(texture, position.x, position.y);
 	}

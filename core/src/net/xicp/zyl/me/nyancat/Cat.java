@@ -16,11 +16,15 @@ public class Cat extends AbstractObject{
 	Animation anim_scarf;
 	Animation anim_foot;
 	Animation anim_rocket;
+	Animation anim_supercat;
 	Rocket rocket;
+	Supercat supercat;
 	float scarfStateTime = 0;
 	float footStateTime = 0;
-	float rocketSateTime = 0;
+	float rocketStateTime = 0;
+	float supercatStateTime = 0;
 	boolean hasRocket;
+	boolean hasSupercat;
 	boolean playFootAnimation;
 	boolean isDead;
 	boolean canThroughThings;
@@ -38,7 +42,9 @@ public class Cat extends AbstractObject{
 				catAtlas.createSprite("alap_lab3"),catAtlas.createSprite("alap_lab4"),catAtlas.createSprite("alap_lab5"),catAtlas.createSprite("alap_lab6"));
 		anim_foot.setPlayMode(Animation.PlayMode.LOOP);
 		rocket = new Rocket();
+		supercat = new Supercat();
 		anim_rocket = rocket.anim_rocket;
+		anim_supercat = supercat.anim_supercat;
 		setPosition();
 	}
 
@@ -61,8 +67,16 @@ public class Cat extends AbstractObject{
 				rocket.isBroken = true;
 				rocket.position.set(position);
 				rocket.velocity.set(-200,500);
+				hasRocket = false;
 			}
-			hasRocket = false;
+		}
+		
+		if(velocity.y <= 1000)
+		{
+			if(hasSupercat)
+			{
+				hasSupercat = false;
+			}
 		}
 	}
 	
@@ -71,9 +85,12 @@ public class Cat extends AbstractObject{
 		setPosition();
 		if(hasRocket)
 		{
-			head.setPosition(body.getX() + body.getWidth() / 2 - 4, body.getY()+anim_rocket.getKeyFrame(rocketSateTime).getRegionHeight() + 6);
+			head.setPosition(body.getX() + body.getWidth() / 2 - 4, body.getY()+anim_rocket.getKeyFrame(rocketStateTime).getRegionHeight() + 6);
 			head.draw(batch);
-			batch.draw(anim_rocket.getKeyFrame(rocketSateTime),body.getX(),body.getY(),anim_rocket.getKeyFrame(rocketSateTime).getRegionWidth()/2,anim_rocket.getKeyFrame(rocketSateTime).getRegionHeight()/2,anim_rocket.getKeyFrame(rocketSateTime).getRegionWidth(),anim_rocket.getKeyFrame(rocketSateTime).getRegionHeight(),1,1,90);
+			batch.draw(anim_rocket.getKeyFrame(rocketStateTime),body.getX(),body.getY(),anim_rocket.getKeyFrame(rocketStateTime).getRegionWidth()/2,anim_rocket.getKeyFrame(rocketStateTime).getRegionHeight()/2,anim_rocket.getKeyFrame(rocketStateTime).getRegionWidth(),anim_rocket.getKeyFrame(rocketStateTime).getRegionHeight(),1,1,90);
+		}else if(hasSupercat)
+		{
+			batch.draw(anim_supercat.getKeyFrame(supercatStateTime),body.getX(),body.getY(),anim_supercat.getKeyFrame(supercatStateTime).getRegionWidth()/2,anim_supercat.getKeyFrame(supercatStateTime).getRegionHeight()/2,anim_supercat.getKeyFrame(supercatStateTime).getRegionWidth(),anim_supercat.getKeyFrame(supercatStateTime).getRegionHeight(),1,1,90);
 		}else
 		{
 			batch.draw(anim_foot.getKeyFrame(footStateTime),body.getX(),body.getY());
@@ -113,6 +130,12 @@ public class Cat extends AbstractObject{
 	public void hitRocket()
 	{
 		hasRocket = true;
+		this.velocity.set(new Vector2(0,6000));
+	}
+	
+	public void hitSupercat()
+	{
+		hasSupercat = true;
 		this.velocity.set(new Vector2(0,4000));
 	}
 }

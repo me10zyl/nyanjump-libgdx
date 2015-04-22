@@ -55,6 +55,8 @@ public class NyancatGame extends Game {
 	Sound enemyDie;
 	Texture ready;
 	Enemy enemy_partycat;
+	float ranBg1;
+    float ranBg2;
 	@Override
 	public void create() {
 		scr_width = 600;
@@ -109,14 +111,16 @@ public class NyancatGame extends Game {
 
 	private void resetWorld() {
 		// TODO Auto-generated method stub
+		ranBg1 = 20000 * MathUtils.random(0.7f, 1);
+		ranBg2 = MathUtils.random(ranBg1, 60000);
 		cat.canThroughThings = false;
 		cat.isDead = false;
+		cat.velocity.set(0, 0);
+		cat.position.set(0, 0);
 		maxY = 0;
 		minY = 0;
 		hasNewScore = false;
 		score = old_score = 0;
-		cat.velocity.set(0, 0);
-		cat.position.set(0, 0);
 		platforms.clear();
 		generatePlatformFirst();
 		camera.position.set(scr_width / 2, cat.position.y + scr_height / 2
@@ -200,9 +204,14 @@ public class NyancatGame extends Game {
 			cat.footStateTime = 0;
 		}
 		if (cat.hasRocket) {
-			cat.rocketSateTime += deltaTime;
+			cat.rocketStateTime += deltaTime;
 		} else {
-			cat.rocketSateTime = 0;
+			cat.rocketStateTime = 0;
+		}
+		if (cat.hasSupercat) {
+			cat.supercatStateTime += deltaTime;
+		} else {
+			cat.supercatStateTime = 0;
 		}
 		if (cat.rocket.isBroken && gameState == GameState.Start && !cat.canThroughThings) {
 			rocket.stop();
@@ -233,7 +242,7 @@ public class NyancatGame extends Game {
 					accleration = 300f;
 				}
 				if (Gdx.input.isKeyPressed(Keys.DPAD_UP)) {
-					cat.jump();
+					cat.velocity.y = 10000;
 				}
 			}
 			cat.velocity.x = accleration;
@@ -279,13 +288,13 @@ public class NyancatGame extends Game {
 						enemy_partycat.getHeight());
 				rect_body.setPosition(cat.position.x, cat.position.y + 1);
 				rect_body.setSize(cat.getWidth(), cat.getHeight() - 1);// crash monster
-				if(rect_foot.overlaps(rect_monster) && !cat.canThroughThings && !cat.isDead && !cat.hasRocket)
+				if(rect_foot.overlaps(rect_monster) && !cat.canThroughThings && !cat.isDead && !cat.hasRocket && !cat.hasSupercat)
 				{
 					enemy_partycat.isDie = true;
 					cat.velocity.y = 2000;
 					enemyDie.play(0.05f);
 				}
-				else if (rect_body.overlaps(rect_monster) && !cat.canThroughThings && !cat.isDead && !cat.hasRocket) {
+				else if (rect_body.overlaps(rect_monster) && !cat.canThroughThings && !cat.isDead && !cat.hasRocket && !cat.hasSupercat) {
 					music.stop();
 					canThroughSound.play();
 					cat.canThroughThings = true;
@@ -314,6 +323,15 @@ public class NyancatGame extends Game {
 							rocket.play();
 							plat.hasRocket = false;
 							cat.hitRocket();
+						}
+					}
+				} else if (plat.hasSupercat) {
+					rect2.setPosition(plat.getSupercat().position);
+					rect2.setSize(plat.getSupercat().getWidth(), plat.getSupercat()
+							.getHeight());
+					if (rect1.overlaps(rect2)) {
+						if (cat.velocity.y <= 0 && !cat.isDead && !cat.canThroughThings) {
+							cat.hitSupercat();
 						}
 					}
 				}
@@ -395,6 +413,21 @@ public class NyancatGame extends Game {
 	}
 
 	private void drawBackground() {
+		
+		if(score >= (int)ranBg2)
+		{
+			backgroundTile.setTexture(new Texture(
+					"images/theme_city_bg.png"));
+		}else if(score >= (int)ranBg1)
+		{
+			backgroundTile.setTexture(new Texture(
+					"images/theme_supernyanio_bg.png"));
+		}else
+		{
+			backgroundTile.setTexture(new Texture(
+					"images/theme_valentine_bg.png"));
+		}
+		
 		int x_count = scr_width % backgroundTile.getRegionWidth() == 0 ? scr_width
 				/ backgroundTile.getRegionWidth()
 				: scr_width / backgroundTile.getRegionWidth() + 1;

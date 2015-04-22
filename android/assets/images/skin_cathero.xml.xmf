@@ -1,75 +1,410 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:7471cc77b8dcd2b47bf9f993e1163f57$ -->
-<!--Format:
-n  => name of the sprite
-x  => sprite x pos in texture
-y  => sprite y pos in texture
-w  => sprite width (may be trimmed)
-h  => sprite height (may be trimmed)
-oX => sprite's x-corner offset (only available if trimmed)
-oY => sprite's y-corner offset (only available if trimmed)
-oW => sprite's original width (only available if trimmed)
-oH => sprite's original height (only available if trimmed)
-r => 'y' only set if sprite is rotated
--->
-<TextureAtlas imagePath="skin_cathero.png" width="512" height="512">
-    <sprite n="cat_01" x="46" y="266" w="40" h="64" oX="2" oY="0" oW="68" oH="42" r="y"/>
-    <sprite n="cat_02" x="347" y="222" w="66" h="40" oX="2" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_03" x="212" y="172" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_04" x="142" y="172" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_05" x="2" y="176" w="66" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_06" x="2" y="220" w="64" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_07" x="46" y="266" w="40" h="64" oX="2" oY="0" oW="68" oH="42" r="y"/>
-    <sprite n="cat_08" x="347" y="222" w="66" h="40" oX="2" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_09" x="212" y="172" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_10" x="142" y="172" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_11" x="2" y="176" w="66" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_12" x="2" y="220" w="64" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_cococat_01" x="226" y="82" w="66" h="42" oX="0" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_cococat_02" x="2" y="130" w="66" h="42" oX="2" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_cococat_03" x="72" y="172" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_cococat_04" x="84" y="82" w="68" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_cococat_05" x="347" y="178" w="66" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_cococat_06" x="2" y="266" w="40" h="64" oX="2" oY="2" oW="68" oH="42" r="y"/>
-    <sprite n="cat_cococat_07" x="72" y="126" w="66" h="42" oX="0" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_cococat_08" x="2" y="130" w="66" h="42" oX="2" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_cococat_09" x="72" y="172" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_cococat_10" x="84" y="82" w="68" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_cococat_11" x="347" y="178" w="66" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_cococat_12" x="417" y="249" w="40" h="64" oX="2" oY="2" oW="68" oH="42" r="y"/>
-    <sprite n="cat_fall_01" x="2" y="345" w="49" h="64" oX="0" oY="1" oW="64" oH="51" r="y"/>
-    <sprite n="cat_fall_02" x="90" y="266" w="49" h="60" oX="3" oY="2" oW="64" oH="51" r="y"/>
-    <sprite n="cat_fall_03" x="143" y="216" w="58" h="49" oX="6" oY="0" oW="64" oH="51"/>
-    <sprite n="cat_fall_04" x="296" y="82" w="47" h="60" oX="3" oY="0" oW="64" oH="51" r="y"/>
-    <sprite n="cat_fallred_01" x="461" y="277" w="49" h="64" oX="0" oY="1" oW="64" oH="51" r="y"/>
-    <sprite n="cat_fallred_02" x="55" y="345" w="49" h="60" oX="3" oY="2" oW="64" oH="51" r="y"/>
-    <sprite n="cat_fallred_03" x="55" y="409" w="49" h="58" oX="5" oY="2" oW="64" oH="51" r="y"/>
-    <sprite n="cat_fallred_04" x="2" y="413" w="49" h="60" oX="3" oY="2" oW="64" oH="51" r="y"/>
-    <sprite n="cat_rainbow" x="330" y="42" w="14" h="30"/>
-    <sprite n="cat_rainbow_nw" x="330" y="42" w="14" h="30"/>
-    <sprite n="cat_rocketeer_01" x="250" y="2" w="109" h="36" oX="11" oY="3" oW="121" oH="40"/>
-    <sprite n="cat_rocketeer_02" x="2" y="2" w="121" h="36" oX="0" oY="2" oW="121" oH="40"/>
-    <sprite n="cat_rocketeer_03" x="363" y="2" w="103" h="40" oX="16" oY="0" oW="121" oH="40"/>
-    <sprite n="cat_rocketeer_04" x="127" y="2" w="119" h="36" oX="0" oY="2" oW="121" oH="40"/>
-    <sprite n="cat_scat_01" x="2" y="42" w="78" h="38"/>
-    <sprite n="cat_scat_02" x="248" y="42" w="78" h="36" oX="0" oY="1" oW="78" oH="38"/>
-    <sprite n="cat_scat_03" x="166" y="42" w="78" h="36" oX="0" oY="2" oW="78" oH="38"/>
-    <sprite n="cat_scat_04" x="84" y="42" w="78" h="36" oX="0" oY="1" oW="78" oH="38"/>
-    <sprite n="cat_slide_01" x="282" y="191" w="61" h="41"/>
-    <sprite n="cat_slide_02" x="462" y="212" w="41" h="61" r="y"/>
-    <sprite n="cat_slide_03" x="417" y="184" w="41" h="61" r="y"/>
-    <sprite n="cat_slide_04" x="282" y="146" w="61" h="41"/>
-    <sprite n="cat_weedcat_01" x="156" y="82" w="66" h="42" oX="0" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_weedcat_02" x="2" y="84" w="66" h="42" oX="2" oY="0" oW="68" oH="42"/>
-    <sprite n="cat_weedcat_03" x="212" y="128" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_weedcat_04" x="348" y="46" w="68" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_weedcat_05" x="142" y="128" w="66" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_weedcat_06" x="463" y="144" w="42" h="64" oX="2" oY="0" oW="68" oH="42" r="y"/>
-    <sprite n="cat_weedcat_07" x="466" y="74" w="42" h="66" oX="0" oY="0" oW="68" oH="42" r="y"/>
-    <sprite n="cat_weedcat_08" x="420" y="46" w="42" h="66" oX="2" oY="0" oW="68" oH="42" r="y"/>
-    <sprite n="cat_weedcat_09" x="347" y="134" w="66" h="40" oX="2" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_weedcat_10" x="470" y="2" w="40" h="68" oX="0" oY="2" oW="68" oH="42" r="y"/>
-    <sprite n="cat_weedcat_11" x="347" y="90" w="66" h="40" oX="0" oY="2" oW="68" oH="42"/>
-    <sprite n="cat_weedcat_12" x="417" y="116" w="42" h="64" oX="2" oY="0" oW="68" oH="42" r="y"/>
-</TextureAtlas>
+skin_cathero.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cat_01
+	rotate: false
+	xy: 46, 266
+	size: 40, 64
+	orig: 40,64
+	offset: 0, 0
+	index: -1
+cat_02
+	rotate: false
+	xy: 347, 222
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_03
+	rotate: false
+	xy: 212, 172
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_04
+	rotate: false
+	xy: 142, 172
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_05
+	rotate: false
+	xy: 2, 176
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_06
+	rotate: false
+	xy: 2, 220
+	size: 64, 40
+	orig: 64,40
+	offset: 0, 0
+	index: -1
+cat_07
+	rotate: false
+	xy: 46, 266
+	size: 40, 64
+	orig: 40,64
+	offset: 0, 0
+	index: -1
+cat_08
+	rotate: false
+	xy: 347, 222
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_09
+	rotate: false
+	xy: 212, 172
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_10
+	rotate: false
+	xy: 142, 172
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_11
+	rotate: false
+	xy: 2, 176
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_12
+	rotate: false
+	xy: 2, 220
+	size: 64, 40
+	orig: 64,40
+	offset: 0, 0
+	index: -1
+cat_cococat_01
+	rotate: false
+	xy: 226, 82
+	size: 66, 42
+	orig: 66,42
+	offset: 0, 0
+	index: -1
+cat_cococat_02
+	rotate: false
+	xy: 2, 130
+	size: 66, 42
+	orig: 66,42
+	offset: 0, 0
+	index: -1
+cat_cococat_03
+	rotate: false
+	xy: 72, 172
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_cococat_04
+	rotate: false
+	xy: 84, 82
+	size: 68, 40
+	orig: 68,40
+	offset: 0, 0
+	index: -1
+cat_cococat_05
+	rotate: false
+	xy: 347, 178
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_cococat_06
+	rotate: false
+	xy: 2, 266
+	size: 40, 64
+	orig: 40,64
+	offset: 0, 0
+	index: -1
+cat_cococat_07
+	rotate: false
+	xy: 72, 126
+	size: 66, 42
+	orig: 66,42
+	offset: 0, 0
+	index: -1
+cat_cococat_08
+	rotate: false
+	xy: 2, 130
+	size: 66, 42
+	orig: 66,42
+	offset: 0, 0
+	index: -1
+cat_cococat_09
+	rotate: false
+	xy: 72, 172
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_cococat_10
+	rotate: false
+	xy: 84, 82
+	size: 68, 40
+	orig: 68,40
+	offset: 0, 0
+	index: -1
+cat_cococat_11
+	rotate: false
+	xy: 347, 178
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_cococat_12
+	rotate: false
+	xy: 417, 249
+	size: 40, 64
+	orig: 40,64
+	offset: 0, 0
+	index: -1
+cat_fall_01
+	rotate: false
+	xy: 2, 345
+	size: 49, 64
+	orig: 49,64
+	offset: 0, 0
+	index: -1
+cat_fall_02
+	rotate: false
+	xy: 90, 266
+	size: 49, 60
+	orig: 49,60
+	offset: 0, 0
+	index: -1
+cat_fall_03
+	rotate: false
+	xy: 143, 216
+	size: 58, 49
+	orig: 58,49
+	offset: 0, 0
+	index: -1
+cat_fall_04
+	rotate: false
+	xy: 296, 82
+	size: 47, 60
+	orig: 47,60
+	offset: 0, 0
+	index: -1
+cat_fallred_01
+	rotate: false
+	xy: 461, 277
+	size: 49, 64
+	orig: 49,64
+	offset: 0, 0
+	index: -1
+cat_fallred_02
+	rotate: false
+	xy: 55, 345
+	size: 49, 60
+	orig: 49,60
+	offset: 0, 0
+	index: -1
+cat_fallred_03
+	rotate: false
+	xy: 55, 409
+	size: 49, 58
+	orig: 49,58
+	offset: 0, 0
+	index: -1
+cat_fallred_04
+	rotate: false
+	xy: 2, 413
+	size: 49, 60
+	orig: 49,60
+	offset: 0, 0
+	index: -1
+cat_rainbow
+	rotate: false
+	xy: 330, 42
+	size: 14, 30
+	orig: 14,30
+	offset: 0, 0
+	index: -1
+cat_rainbow_nw
+	rotate: false
+	xy: 330, 42
+	size: 14, 30
+	orig: 14,30
+	offset: 0, 0
+	index: -1
+cat_rocketeer_01
+	rotate: false
+	xy: 250, 2
+	size: 109, 36
+	orig: 109,36
+	offset: 0, 0
+	index: -1
+cat_rocketeer_02
+	rotate: false
+	xy: 2, 2
+	size: 121, 36
+	orig: 121,36
+	offset: 0, 0
+	index: -1
+cat_rocketeer_03
+	rotate: false
+	xy: 363, 2
+	size: 103, 40
+	orig: 103,40
+	offset: 0, 0
+	index: -1
+cat_rocketeer_04
+	rotate: false
+	xy: 127, 2
+	size: 119, 36
+	orig: 119,36
+	offset: 0, 0
+	index: -1
+cat_scat_01
+	rotate: false
+	xy: 2, 42
+	size: 78, 38
+	orig: 78,38
+	offset: 0, 0
+	index: -1
+cat_scat_02
+	rotate: false
+	xy: 248, 42
+	size: 78, 36
+	orig: 78,36
+	offset: 0, 0
+	index: -1
+cat_scat_03
+	rotate: false
+	xy: 166, 42
+	size: 78, 36
+	orig: 78,36
+	offset: 0, 0
+	index: -1
+cat_scat_04
+	rotate: false
+	xy: 84, 42
+	size: 78, 36
+	orig: 78,36
+	offset: 0, 0
+	index: -1
+cat_slide_01
+	rotate: false
+	xy: 282, 191
+	size: 61, 41
+	orig: 61,41
+	offset: 0, 0
+	index: -1
+cat_slide_02
+	rotate: false
+	xy: 462, 212
+	size: 41, 61
+	orig: 41,61
+	offset: 0, 0
+	index: -1
+cat_slide_03
+	rotate: false
+	xy: 417, 184
+	size: 41, 61
+	orig: 41,61
+	offset: 0, 0
+	index: -1
+cat_slide_04
+	rotate: false
+	xy: 282, 146
+	size: 61, 41
+	orig: 61,41
+	offset: 0, 0
+	index: -1
+cat_weedcat_01
+	rotate: false
+	xy: 156, 82
+	size: 66, 42
+	orig: 66,42
+	offset: 0, 0
+	index: -1
+cat_weedcat_02
+	rotate: false
+	xy: 2, 84
+	size: 66, 42
+	orig: 66,42
+	offset: 0, 0
+	index: -1
+cat_weedcat_03
+	rotate: false
+	xy: 212, 128
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_weedcat_04
+	rotate: false
+	xy: 348, 46
+	size: 68, 40
+	orig: 68,40
+	offset: 0, 0
+	index: -1
+cat_weedcat_05
+	rotate: false
+	xy: 142, 128
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_weedcat_06
+	rotate: false
+	xy: 463, 144
+	size: 42, 64
+	orig: 42,64
+	offset: 0, 0
+	index: -1
+cat_weedcat_07
+	rotate: false
+	xy: 466, 74
+	size: 42, 66
+	orig: 42,66
+	offset: 0, 0
+	index: -1
+cat_weedcat_08
+	rotate: false
+	xy: 420, 46
+	size: 42, 66
+	orig: 42,66
+	offset: 0, 0
+	index: -1
+cat_weedcat_09
+	rotate: false
+	xy: 347, 134
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_weedcat_10
+	rotate: false
+	xy: 470, 2
+	size: 40, 68
+	orig: 40,68
+	offset: 0, 0
+	index: -1
+cat_weedcat_11
+	rotate: false
+	xy: 347, 90
+	size: 66, 40
+	orig: 66,40
+	offset: 0, 0
+	index: -1
+cat_weedcat_12
+	rotate: false
+	xy: 417, 116
+	size: 42, 64
+	orig: 42,64
+	offset: 0, 0
+	index: -1
