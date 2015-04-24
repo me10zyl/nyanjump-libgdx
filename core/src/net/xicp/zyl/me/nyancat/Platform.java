@@ -182,7 +182,7 @@ public class Platform extends AbstractObject{
 
 	public Platform() {
 		// TODO Auto-generated constructor stub
-		catAtlas = new TextureAtlas("images/theme_common.xml.xmf");
+		catAtlas = Assets.theme_commonAtlas;
 		texture = catAtlas.createSprite(type);
 		spring = new Spring();
 		rocket = new SmallRocket();
@@ -228,6 +228,16 @@ public class Platform extends AbstractObject{
 	
 	public void draw(SpriteBatch batch)
 	{
+		if(batch == null)
+			System.out.println(batch + "               batch为空了!!");
+		if(texture == null)
+		System.out.println(texture+"          texture为空了!");
+		if(supercat == null)
+		System.out.println(supercat + "               supercat为空了！");
+		if(rocket == null)
+			System.out.println(rocket + "               rocket为空了!!");
+		if(position == null)
+			System.out.println(position + "                  position为空了！！");
 		if(hasSpring)
 		{
 			spring.position.x = this.position.x + getWidth() / 2 - spring.getWidth() / 2;

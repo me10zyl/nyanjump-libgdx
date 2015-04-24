@@ -43,11 +43,11 @@ public class Rocket extends AbstractObject {
 
 	public Rocket() {
 		// TODO Auto-generated constructor stub
-		catAtlas = new TextureAtlas("images/tp.xml.xmf");
-		rocket_no_fire = new TextureRegion(new Texture("images/rocket_no_fire.png"));
+		catAtlas = Assets.tpAtlas;
+		rocket_no_fire = Assets.rocket_no_fire;
 		width = rocket_no_fire.getRegionWidth();
 		height = rocket_no_fire.getRegionHeight();
-		catAtlas = new TextureAtlas("images/tp.xml.xmf");
+		catAtlas = Assets.tpAtlas;
 		final Sprite rocket1 = catAtlas.createSprite("rocketeer_rocket1");
 		final Sprite rocket2 = catAtlas.createSprite("rocketeer_rocket2");
 		final Sprite rocket3 = catAtlas.createSprite("rocketeer_rocket3");

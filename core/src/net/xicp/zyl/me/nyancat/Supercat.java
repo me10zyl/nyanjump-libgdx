@@ -40,15 +40,14 @@ public class Supercat extends AbstractObject{
 	}
 
 	public Supercat() {
-		atlas = new TextureAtlas(Gdx.files.internal("images/theme_common.xml.xmf"));
-		altlas2_anim = new TextureAtlas(Gdx.files.internal("images/skin_cathero.xml.xmf"));
-		Sprite sprite1 = altlas2_anim.createSprite("cat_scat_01");
-		Sprite sprite2 = altlas2_anim.createSprite("cat_scat_02");
-		Sprite sprite3 = altlas2_anim.createSprite("cat_scat_03");
-		Sprite sprite4 = altlas2_anim.createSprite("cat_scat_04");
-		anim_supercat = new Animation(0.05f, sprite1,sprite2,sprite3,sprite4);
-		anim_supercat.setPlayMode(PlayMode.LOOP);
-		supercat = atlas.createSprite("powerup_supercat");
+		atlas = Assets.theme_commonAtlas;
+		altlas2_anim = Assets.skin_catheroAtlas;
+		Sprite sprite1 = Assets.cat_scat_01Sprite;
+		Sprite sprite2 = Assets.cat_scat_02Sprite;
+		Sprite sprite3 = Assets.cat_scat_03Sprite;
+		Sprite sprite4 = Assets.cat_scat_04Sprite;
+		anim_supercat = Assets.supercatAnimation;
+		supercat = Assets.powerup_supercatSprite;
 		width  = supercat.getWidth();
 		height = supercat.getHeight();
 	}

@@ -25,7 +25,7 @@ public class Spring extends AbstractObject {
 
 	public Spring() {
 		// TODO Auto-generated constructor stub
-		texture = new Texture("images/spring.png");
+		texture = Assets.springTexture;
 		width = texture.getWidth();
 		height = texture.getHeight();
 	}

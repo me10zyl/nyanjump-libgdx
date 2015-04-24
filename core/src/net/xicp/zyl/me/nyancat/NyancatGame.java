@@ -69,6 +69,7 @@ public class NyancatGame extends Game {
 
 	@Override
 	public void create() {
+		Assets.load();
 		scr_width = 600;
 		scr_height = 1066;
 		enemy_partycat = new Enemy(Enemy.TYPE.partycat);
@@ -88,7 +89,7 @@ public class NyancatGame extends Game {
 		bg_valentine = new Texture("images/theme_city_bg.png");
 		bg_supernyanio = new Texture("images/theme_supernyanio_bg.png");
 		bg_valentine = new Texture("images/theme_valentine_bg.png");
-		batch = new SpriteBatch();
+		batch = new MySpriteBatch();
 		cat = new Cat();
 		font = new BitmapFont(Gdx.files.internal("images/arial.fnt"));
 		gameOver = new Texture("images/gameover.png");

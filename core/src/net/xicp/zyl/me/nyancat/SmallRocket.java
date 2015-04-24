@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 public class SmallRocket extends AbstractObject {
-	private TextureAtlas catAtlas;
 	private Sprite texture;
 	private float width;
 	private float height;
@@ -29,8 +28,7 @@ public class SmallRocket extends AbstractObject {
 
 	public SmallRocket() {
 		// TODO Auto-generated constructor stub
-		catAtlas = new TextureAtlas("images/theme_common.xml.xmf");
-		texture = catAtlas.createSprite("powerup_rocketeer");
+		texture = Assets.powerup_rocketeerSprite;
 		width = texture.getWidth();
 		height = texture.getHeight();
 	}
