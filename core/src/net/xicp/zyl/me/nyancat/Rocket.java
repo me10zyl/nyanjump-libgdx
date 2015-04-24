@@ -14,6 +14,7 @@ public class Rocket extends AbstractObject {
 	private float width;
 	private float height;
 	Animation anim_rocket;
+	boolean isAnimationEnd;
 	boolean isBroken = false;
 	
 	public boolean isBroken() {

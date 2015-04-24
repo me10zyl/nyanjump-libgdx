@@ -197,18 +197,19 @@ public class Platform extends AbstractObject{
 			setAllFalse();
 			hasSpring = true;
 		}
-		if(MathUtils.randomBoolean(0.03f) && position.y >= 300)
+		if(MathUtils.randomBoolean(0.5f) && position.y >= 300)
 		{
 			setAllFalse();
 			hasRocket = true;
 		}
-		if(MathUtils.randomBoolean(0.07f)  && position.y >= 300)
+		if(MathUtils.randomBoolean(0.5f)  && position.y >= 300)
 		{
 			setAllFalse();
 			hasSupercat = true;
 		}
 		position.set(0, 0);
 		velocity.set(0, 0);
+		level = Level.NORMAL;
 	}
 	
 	private void setAllFalse()

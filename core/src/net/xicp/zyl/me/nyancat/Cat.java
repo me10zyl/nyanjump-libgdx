@@ -68,6 +68,7 @@ public class Cat extends AbstractObject{
 				rocket.position.set(position);
 				rocket.velocity.set(-200,500);
 				hasRocket = false;
+				rocket.isAnimationEnd = true;
 			}
 		}
 		
@@ -75,6 +76,7 @@ public class Cat extends AbstractObject{
 		{
 			if(hasSupercat)
 			{
+				supercat.isAnimationEnd = true;
 				hasSupercat = false;
 			}
 		}
@@ -130,12 +132,14 @@ public class Cat extends AbstractObject{
 	public void hitRocket()
 	{
 		hasRocket = true;
+		rocket.isAnimationEnd = false;
 		this.velocity.set(new Vector2(0,6000));
 	}
 	
 	public void hitSupercat()
 	{
 		hasSupercat = true;
+		supercat.isAnimationEnd = false;
 		this.velocity.set(new Vector2(0,4000));
 	}
 }

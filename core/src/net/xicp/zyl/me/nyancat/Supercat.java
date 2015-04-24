@@ -12,6 +12,7 @@ public class Supercat extends AbstractObject{
 	TextureAtlas altlas2_anim;
 	private Sprite supercat;
 	Animation anim_supercat;
+	boolean isAnimationEnd;
 	public Sprite getSupercat() {
 		return supercat;
 	}
