@@ -197,12 +197,12 @@ public class Platform extends AbstractObject{
 			setAllFalse();
 			hasSpring = true;
 		}
-		if(MathUtils.randomBoolean(0.5f) && position.y >= 300)
+		if(MathUtils.randomBoolean(0.07f) && position.y >= 300)
 		{
 			setAllFalse();
 			hasRocket = true;
 		}
-		if(MathUtils.randomBoolean(0.5f)  && position.y >= 300)
+		if(MathUtils.randomBoolean(0.03f)  && position.y >= 300)
 		{
 			setAllFalse();
 			hasSupercat = true;
@@ -228,16 +228,6 @@ public class Platform extends AbstractObject{
 	
 	public void draw(SpriteBatch batch)
 	{
-		if(batch == null)
-			System.out.println(batch + "               batch为空了!!");
-		if(texture == null)
-		System.out.println(texture+"          texture为空了!");
-		if(supercat == null)
-		System.out.println(supercat + "               supercat为空了！");
-		if(rocket == null)
-			System.out.println(rocket + "               rocket为空了!!");
-		if(position == null)
-			System.out.println(position + "                  position为空了！！");
 		if(hasSpring)
 		{
 			spring.position.x = this.position.x + getWidth() / 2 - spring.getWidth() / 2;

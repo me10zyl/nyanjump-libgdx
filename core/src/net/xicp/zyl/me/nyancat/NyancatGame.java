@@ -63,10 +63,10 @@ public class NyancatGame extends Game {
 	Rectangle rect_foot = new Rectangle();
 	Rectangle rect_body = new Rectangle();
 	Rectangle rect_monster = new Rectangle();
-	private Texture bg_city;
-	private Texture bg_supernyanio;
-	private Texture bg_valentine;
-
+	private TextureRegion bg_city;
+	private TextureRegion bg_supernyanio;
+	private TextureRegion bg_valentine;
+	private String current_background;
 	@Override
 	public void create() {
 		Assets.load();
@@ -74,6 +74,9 @@ public class NyancatGame extends Game {
 		scr_height = 1066;
 		enemy_partycat = new Enemy(Enemy.TYPE.partycat);
 		ready = new Texture("images/ready.png");
+		bg_city = new TextureRegion(new Texture("images/theme_city_bg.png"));
+		bg_supernyanio = new TextureRegion(new Texture("images/theme_supernyanio_bg.png"));
+		bg_valentine = new TextureRegion(new Texture("images/theme_valentine_bg.png"));
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/music.ogg"));
 		hitPlatform = Gdx.audio
 				.newSound(Gdx.files.internal("sound/killed.ogg"));
@@ -86,10 +89,7 @@ public class NyancatGame extends Game {
 				.internal("sound/weedcat.ogg"));
 		enemyDie = Gdx.audio
 				.newSound(Gdx.files.internal("sound/nyan_shop.ogg"));
-		bg_valentine = new Texture("images/theme_city_bg.png");
-		bg_supernyanio = new Texture("images/theme_supernyanio_bg.png");
-		bg_valentine = new Texture("images/theme_valentine_bg.png");
-		batch = new MySpriteBatch();
+		batch = new SpriteBatch();
 		cat = new Cat();
 		font = new BitmapFont(Gdx.files.internal("images/arial.fnt"));
 		gameOver = new Texture("images/gameover.png");
@@ -131,6 +131,7 @@ public class NyancatGame extends Game {
 
 	private void resetWorld() {
 		// TODO Auto-generated method stub
+		current_background = "";
 		ranBg1 = 20000 * MathUtils.random(0.7f, 1);
 		ranBg2 = MathUtils.random(ranBg1, 60000);
 		cat.canThroughThings = false;
@@ -411,7 +412,6 @@ public class NyancatGame extends Game {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		drawBackground();
-		batch.draw(backgroundTile, 0, 0);
 		for (Platform plat : platforms) {
 				plat.draw(batch);
 			// font.draw(batch,platforms.indexOf(plat) + ":"+plat.position.y +
@@ -455,11 +455,23 @@ public class NyancatGame extends Game {
 	private void drawBackground() {
 
 		if (score >= (int) ranBg2) {
-			backgroundTile.setTexture(bg_city);
-		} else if (score >= (int) ranBg1) {
-			backgroundTile.setTexture(bg_supernyanio);
-		} else {
-			backgroundTile.setTexture(bg_valentine);
+			if(!"bg_city".equals(current_background))
+			{
+				backgroundTile = bg_city;
+				current_background = "bg_city";
+				System.out.println(current_background);
+			}
+		}  else if (score >= (int) ranBg1 ) {
+			if(!"bg_supernyanio".equals(current_background))
+			{
+				backgroundTile = bg_supernyanio;
+				current_background = "bg_supernyanio";
+				System.out.println(current_background);
+			}
+		}else if(!"bg_valentine".equals("bg_valentine")){
+			backgroundTile = bg_valentine;
+			current_background = "bg_valentine";
+			System.out.println(current_background);
 		}
 
 		int x_count = scr_width % backgroundTile.getRegionWidth() == 0 ? scr_width
